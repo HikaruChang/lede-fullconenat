@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nftables
-PKG_VERSION:=1.0.8
+PKG_VERSION:=1.1.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://netfilter.org/projects/$(PKG_NAME)/files
-PKG_HASH:=9373740de41a82dbc98818e0a46a073faeb8a8d0689fa4fa1a74399c32bf3d50
+PKG_HASH:=6358830f3a64f31e39b0ad421d7dadcd240b72343ded48d8ef13b8faf204865a
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=GPL-2.0
@@ -63,19 +63,19 @@ ifeq ($(BUILD_VARIANT),json)
 endif
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/lib $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/nftables $(1)/usr/include/
-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libnftables.pc \
-		$(1)/usr/lib/pkgconfig/
+        $(INSTALL_DIR) $(1)/usr/lib $(1)/usr/include
+        $(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
+        $(CP) $(PKG_INSTALL_DIR)/usr/include/nftables $(1)/usr/include/
+        $(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+        $(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/libnftables.pc \
+                $(1)/usr/lib/pkgconfig/
 endef
 
 define Package/nftables/install/Default
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/nft $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
+        $(INSTALL_DIR) $(1)/usr/sbin
+        $(CP) $(PKG_INSTALL_DIR)/usr/sbin/nft $(1)/usr/sbin/
+        $(INSTALL_DIR) $(1)/usr/lib
+        $(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
 endef
 
 Package/nftables-nojson/install = $(Package/nftables/install/Default)
